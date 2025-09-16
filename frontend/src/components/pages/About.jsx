@@ -78,7 +78,7 @@ const AboutPage = () => {
                 "Builds modern and interactive web applications with clean, maintainable code. Passionate about crafting smooth user interactions.",
             skills: ["React", "JavaScript", "Tailwind CSS", "Responsive Design"],
             icon: <CodeXml className="w-6 h-6" />,
-            avatar: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&h=400&fit=crop&crop=face",
+            avatar: "https://media.licdn.com/dms/image/v2/D4E03AQFpLhyBWSIPWg/profile-displayphoto-crop_800_800/B4EZlOFtoJKsAM-/0/1757951746601?e=1761177600&v=beta&t=NIlHJz5RQvt3BUmWy4Mw21LWJbrkPfC85CKTc8JULxg",
         },
         {
             name: "Prateek",
