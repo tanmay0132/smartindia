@@ -48,10 +48,11 @@ const AboutPage = () => {
             name: "Tanmay",
             role: "Team Lead & AI/ML",
             description:
-                "Leads the development of AI models and backend architecture. Specializes in machine learning integration and system design.",
+                "Leads the team and development of AI models. Specializes in machine learning integration and deep learning.",
             skills: ["TensorFlow", "PyTorch", "Computer Vision", "LSTM", "CNN"],
             icon: <Code className="w-6 h-6" />,
             avatar: "https://media.licdn.com/dms/image/v2/D4E03AQEZHxL99kcujg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1728161143722?e=1759968000&v=beta&t=gudYEnwr8Py9T5U6qJHRVSO96GWtjmaHw3rHsvyfMIU",
+            linkedin: "https://www.linkedin.com/in/tanmayyash-mallick-229b82325/",
         },
         {
             name: "Saanvi",
@@ -61,15 +62,17 @@ const AboutPage = () => {
             skills: ["TensorFlow", "PyTorch", "Computer Vision", "LSTM", "CNN"],
             icon: <Brain className="w-6 h-6" />,
             avatar: "https://media.licdn.com/dms/image/v2/D5603AQETpv64ZR9eIA/profile-displayphoto-shrink_400_400/B56ZdO0eiLHEAg-/0/1749374070994?e=1759968000&v=beta&t=vzWE7q5PSOdhSEdu4SGTb5C7yzpXyi1CoeUazGxF8ZA",
+            linkedin: "https://www.linkedin.com/in/saanvi-konchada/",
         },
         {
             name: "Swayampragyan",
             role: "Backend Developer",
             description:
-                "Builds robust APIs and database systems. Handles data processing pipelines and server infrastructure.",
-            skills: ["Python", "FastAPI", "PostgreSQL", "Docker", "AWS"],
+                "Leads backend development, architecting robust APIs and scalable database systems. Ensures high performance and reliability across applications.",
+            skills: ["Node Js.", "Express Js.", "MySQL", "Mern Stack", "Server Management"],
             icon: <Database className="w-6 h-6" />,
-            avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
+            avatar: "https://media.licdn.com/dms/image/v2/D4D03AQFHt-fnX0dQCA/profile-displayphoto-scale_400_400/B4DZlS2eLHJAAg-/0/1758031638241?e=1761177600&v=beta&t=Cz067H_vCKF9LTlOCZThK91KdShQqr2loO-76IvoKG4",
+            linkedin: "https://www.linkedin.com/in/swayampragyan-sahoo-210607328/",
         },
         {
             name: "Saurav",
@@ -79,6 +82,7 @@ const AboutPage = () => {
             skills: ["React", "JavaScript", "Tailwind CSS", "Responsive Design"],
             icon: <CodeXml className="w-6 h-6" />,
             avatar: "https://media.licdn.com/dms/image/v2/D4E03AQFpLhyBWSIPWg/profile-displayphoto-crop_800_800/B4EZlOFtoJKsAM-/0/1757951746601?e=1761177600&v=beta&t=NIlHJz5RQvt3BUmWy4Mw21LWJbrkPfC85CKTc8JULxg",
+            linkedin: "https://www.linkedin.com/in/saurav-panigrahi-6b9576323/",
         },
         {
             name: "Prateek",
@@ -88,16 +92,18 @@ const AboutPage = () => {
             skills: ["Figma", "UI/UX", "Wireframing", "Prototyping", "User Research"],
             icon: <Palette className="w-6 h-6" />,
             avatar: "https://media.licdn.com/dms/image/v2/D5603AQEMOMUwQqe1CQ/profile-displayphoto-scale_400_400/B56ZkZ0ocrG0Aw-/0/1757074853763?e=1759968000&v=beta&t=UvSLhOwYOjJ39WXUmY3tx1z7aBmmEl8m4qjpP0HaJss",
+            linkedin: "https://www.linkedin.com/in/prateek-mohanty-519240330/",
         },
 
         {
             name: "Surya",
-            role: "Mobile Developer & DevOps",
+            role: "Reasearch And Backend",
             description:
-                "Develops mobile applications and manages deployment pipelines. Expert in cross-platform development and CI/CD.",
-            skills: ["React Native", "Flutter", "DevOps", "CI/CD", "Mobile Development"],
+                "Leads research initiatives, building scalable APIs and managing deployment pipelines. Skilled in cross-platform mobile solutions to ensure robust, efficient systems.",
+            skills: ["Django", "Python", "AI & ML", "Research", "Web Development"],
             icon: <Smartphone className="w-6 h-6" />,
             avatar: "https://media.licdn.com/dms/image/v2/D5635AQEjDAPwP7vMCw/profile-framedphoto-shrink_800_800/B56ZjpnC_qIAAg-/0/1756265984442?e=1758542400&v=beta&t=SppRN5a_0hbZP1REuyG6ofCy12UoXw983sFRypAjrOM",
+            linkedin: "https://www.linkedin.com/in/surya-pratap-dash-b5b496287/",
         },
     ]
 
@@ -159,7 +165,10 @@ const AboutPage = () => {
             </div>
 
             {/* Hero Section */}
-            <section className="relative z-10 pt-20 pb-11 px-4 sm:px-6 lg:px-8" style={{ paddingTop: "118px" }}>
+            <section
+                className="relative z-10 pt-20 pb-11 px-4 sm:px-6 lg:px-8"
+                style={{ paddingTop: "118px" }}
+            >
                 <div className="max-w-4xl mx-auto text-center">
                     <div className="animate-fade-in">
                         <div className="flex items-center justify-center gap-3 mb-6">
@@ -173,9 +182,11 @@ const AboutPage = () => {
                         </h1>
 
                         <p className="text-xl sm:text-2xl lg:text-3xl mb-8 text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                            Revolutionizing agriculture through AI-powered insights and innovative technology solutions
+                            Revolutionizing agriculture through AI-powered insights and innovative
+                            technology solutions
                         </p>
-                        <div className="flex items-center justify-center gap-6 text-gray-300">
+
+                        <div className="flex items-center justify-center gap-6 text-gray-300 mb-10">
                             <div className="flex items-center gap-2">
                                 <Calendar className="w-5 h-5 text-green-400" />
                                 <span>Smart India Hackathon 2025</span>
@@ -185,9 +196,24 @@ const AboutPage = () => {
                                 <span>India</span>
                             </div>
                         </div>
+
+                        {/* Download Button */}
+                        <div className="flex justify-center">
+                            <a
+                                href=".../sih.pdf" // Replace with your PDF path
+                                download
+                                className="px-6 py-3 bg-gradient-to-r from-green-400 via-blue-500 to-green-600 text-white font-semibold rounded-lg shadow-lg 
+               transform transition-all duration-300 ease-in-out text-sm sm:text-base
+               hover:scale-110 hover:shadow-xl hover:shadow-green-500/30 hover:bg-gradient-to-r hover:from-blue-500 hover:via-green-500 hover:to-green-700"
+                            >
+                                Download SIH PDF
+                            </a>
+                        </div>
+
                     </div>
                 </div>
             </section>
+
 
             {/* Project Highlights */}
             <section id="highlights" className="relative z-10 py-16 px-4 sm:px-6 lg:px-8">
@@ -244,10 +270,8 @@ const AboutPage = () => {
                                     <img
                                         src={`${member.avatar}`}
                                         alt={member.name}
-                                        className={`w-24 h-24 rounded-full mx-auto border-4 transition-all duration-300 ${member.name === "Tanmay"
-                                                ? "border-yellow-400 group-hover:border-yellow-500"
-                                                : "border-green-400/50 group-hover:border-green-400"
-                                            }`}
+                                        className={`w-24 h-24 rounded-full mx-auto border-4 transition-all duration-300  border-green-400/50 group-hover:border-green-400
+                                            `}
                                     />
                                     <div
                                         className={`absolute -bottom-2 -right-2 p-2 rounded-full bg-gradient-to-r from-green-500 to-blue-600`}
@@ -282,16 +306,32 @@ const AboutPage = () => {
 
                                 {/* Social Links */}
                                 <div className="flex justify-center gap-4">
-                                    <button className="p-2 bg-gray-700/50 hover:bg-green-500/20 rounded-full transition-all duration-300 group/btn">
+                                    <a
+                                        href={member.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="p-2 bg-gray-700/50 hover:bg-green-500/20 rounded-full transition-all duration-300 group/btn"
+                                    >
                                         <Github className="w-4 h-4 text-gray-400 group-hover/btn:text-green-400" />
-                                    </button>
-                                    <button className="p-2 bg-gray-700/50 hover:bg-blue-500/20 rounded-full transition-all duration-300 group/btn">
+                                    </a>
+
+                                    <a
+                                        href={member.linkedin}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="p-2 bg-gray-700/50 hover:bg-blue-500/20 rounded-full transition-all duration-300 group/btn"
+                                    >
                                         <Linkedin className="w-4 h-4 text-gray-400 group-hover/btn:text-blue-400" />
-                                    </button>
-                                    <button className="p-2 bg-gray-700/50 hover:bg-purple-500/20 rounded-full transition-all duration-300 group/btn">
+                                    </a>
+
+                                    <a
+                                        href={`mailto:${member.mail}`}
+                                        className="p-2 bg-gray-700/50 hover:bg-purple-500/20 rounded-full transition-all duration-300 group/btn"
+                                    >
                                         <Mail className="w-4 h-4 text-gray-400 group-hover/btn:text-purple-400" />
-                                    </button>
+                                    </a>
                                 </div>
+
                             </div>
                         ))}
                     </div>
