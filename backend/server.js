@@ -68,6 +68,19 @@ const createTables = async () => {
         INDEX idx_phone_expires (phone, expires_at)
     )`)
 
+    await dbQuery(`CREATE TABLE IF NOT EXISTS fields (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+    user_email VARCHAR(255) NOT NULL,
+    area_name VARCHAR(255) NOT NULL,
+    field_name VARCHAR(255) NOT NULL,
+    latitude DECIMAL(10,8),
+    longitude DECIMAL(11,8),
+    address TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_user_email (user_email)
+   )`);
+
+
     console.log("✅ Tables created/verified")
   } catch (err) {
     console.error("❌ Table creation error:", err)
@@ -394,6 +407,93 @@ app.post("/api/login", async (req, res) => {
   }
 })
 
+// Add a field
+app.post("/api/fields", async (req, res) => {
+  console.log("REQ BODY:", req.body)
+
+  res.send("Hello from fields endpoint");
+  try {
+
+
+
+    const { userEmail, areaName, fieldName, location } = req.body
+    console.log("Received field data:", req.body) // Add logging
+
+    if (!userEmail || !fieldName) {
+      return res.status(400).json({ error: "Missing required fields" })
+    }
+
+
+    const lat = location?.latitude || null
+    const lng = location?.longitude || null
+    const address = location?.address || null
+
+
+    // Use dbQuery instead of db.execute
+    const result = await dbQuery(
+      "INSERT INTO fields (user_email, area_name, field_name, latitude, longitude, address) VALUES (?, ?, ?, ?, ?, ?)",
+      [
+        userEmail,
+        areaName || null,
+        fieldName,
+        lat || null,
+        lng || null,
+        address || null
+      ]
+    )
+
+    console.log("Field inserted with ID:", result.insertId)
+    res.json({ message: "Field added successfully", id: result.insertId })
+  } catch (err) {
+    console.error("Add field error:", err)
+    res.status(500).json({ error: "Failed to add field", details: err.message })
+  }
+})
+
+
+app.delete("/api/fields/:id", async (req, res) => {
+  try {
+    const { id } = req.params
+    const { userEmail } = req.body
+
+    if (!id || !userEmail) {
+      return res.status(400).json({ error: "Field ID and user email are required" })
+    }
+
+    // Verify the field belongs to the user before deleting
+    const result = await dbQuery("DELETE FROM fields WHERE id = ? AND user_email = ?", [id, userEmail])
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "Field not found or unauthorized" })
+    }
+
+    res.json({ message: "Field deleted successfully" })
+  } catch (err) {
+    console.error("Delete field error:", err)
+    res.status(500).json({ error: "Failed to delete field", details: err.message })
+  }
+})
+
+
+app.get("/api/fields/:userEmail", async (req, res) => {
+  try {
+    const { userEmail } = req.params
+
+    if (!userEmail) {
+      return res.status(400).json({ error: "User email is required" })
+    }
+
+    const fields = await dbQuery("SELECT * FROM fields WHERE user_email = ? ORDER BY created_at DESC", [userEmail])
+
+    res.json({ fields })
+  } catch (err) {
+    console.error("Fetch fields error:", err)
+    res.status(500).json({ error: "Failed to fetch fields", details: err.message })
+  }
+})
+
+
+
 // Health check
 app.get("/api/health", (req, res) => {
   res.json({ status: "OK", timestamp: new Date().toISOString() })
@@ -412,5 +512,10 @@ process.on("SIGTERM", () => {
     process.exit(0)
   })
 })
+
+
+
+
+
 
 app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`))

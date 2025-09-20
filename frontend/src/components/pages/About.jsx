@@ -200,7 +200,7 @@ const AboutPage = () => {
                         {/* Download Button */}
                         <div className="flex justify-center">
                             <a
-                                href=".../sih.pdf" // Replace with your PDF path
+                                href=".../ZeroDegree_B124146.pdf" // Replace with your PDF path
                                 download
                                 className="px-6 py-3 bg-gradient-to-r from-green-400 via-blue-500 to-green-600 text-white font-semibold rounded-lg shadow-lg 
                transform transition-all duration-300 ease-in-out text-sm sm:text-base
