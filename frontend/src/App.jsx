@@ -19,47 +19,48 @@ import {
 } from 'lucide-react';
 import VideoModal from './components/VideoModal';
 import Spline from '@splinetool/react-spline';
-
+import { useNavigate } from "react-router-dom";
 
 
 
 const HomePage = () => {
   // const [isModalOpen, setIsModalOpen] = useState(false);
   const videoRef = useRef(null);
-const [fade, setFade] = useState(false);
-const [visible, setVisible] = useState(false); // controls first load fade
+  const [fade, setFade] = useState(false);
+  const [visible, setVisible] = useState(false); // controls first load fade
+   const navigate = useNavigate();
 
-useEffect(() => {
-  const video = videoRef.current;
-  if (!video) return;
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
 
-  const handleTimeUpdate = () => {
-    if (video.duration - video.currentTime < 0.5) {
-      setFade(true);
-    }
-  };
+    const handleTimeUpdate = () => {
+      if (video.duration - video.currentTime < 0.5) {
+        setFade(true);
+      }
+    };
 
-  const handleEnded = () => {
-    video.currentTime = 0;
-    setFade(false); // fade back in after replay
-    video.play();
-  };
+    const handleEnded = () => {
+      video.currentTime = 0;
+      setFade(false); // fade back in after replay
+      video.play();
+    };
 
-  const handleLoaded = () => {
-    setTimeout(() => setVisible(true), 50); 
-    // small delay ensures CSS transition actually runs
-  };
+    const handleLoaded = () => {
+      setTimeout(() => setVisible(true), 50);
+      // small delay ensures CSS transition actually runs
+    };
 
-  video.addEventListener("timeupdate", handleTimeUpdate);
-  video.addEventListener("ended", handleEnded);
-  video.addEventListener("loadeddata", handleLoaded);
+    video.addEventListener("timeupdate", handleTimeUpdate);
+    video.addEventListener("ended", handleEnded);
+    video.addEventListener("loadeddata", handleLoaded);
 
-  return () => {
-    video.removeEventListener("timeupdate", handleTimeUpdate);
-    video.removeEventListener("ended", handleEnded);
-    video.removeEventListener("loadeddata", handleLoaded);
-  };
-}, []);
+    return () => {
+      video.removeEventListener("timeupdate", handleTimeUpdate);
+      video.removeEventListener("ended", handleEnded);
+      video.removeEventListener("loadeddata", handleLoaded);
+    };
+  }, []);
 
 
 
@@ -175,9 +176,12 @@ useEffect(() => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center max-[473px]:mb-6">
-            <button className="group bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center gap-3 shadow-lg shadow-green-500/20 hover:shadow-green-500/40">
+            <button
+              onClick={() => navigate("/fieldinfo")}
+              className="group bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center gap-3 shadow-lg shadow-green-500/20 hover:shadow-green-500/40"
+            >
               Try the Model
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-5 h-5 transform transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
             </button>
 
             <button

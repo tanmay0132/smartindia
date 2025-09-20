@@ -19,6 +19,7 @@ import {
     Rocket,
     Heart,
     CodeXml,
+    Download,
 } from "lucide-react"
 
 const AboutPage = () => {
@@ -202,12 +203,13 @@ const AboutPage = () => {
                             <a
                                 href=".../ZeroDegree_B124146.pdf" // Replace with your PDF path
                                 download
-                                className="px-6 py-3 bg-gradient-to-r from-green-400 via-blue-500 to-green-600 text-white font-semibold rounded-lg shadow-lg 
-               transform transition-all duration-300 ease-in-out text-sm sm:text-base
-               hover:scale-110 hover:shadow-xl hover:shadow-green-500/30 hover:bg-gradient-to-r hover:from-blue-500 hover:via-green-500 hover:to-green-700"
                             >
-                                Download SIH PDF
+                                <button className="group bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center gap-3 shadow-lg shadow-green-500/20 hover:shadow-green-500/40">
+                                    Download SIH PDF
+                                    <Download className="w-5 h-5 transform transition-transform duration-300 ease-in-out group-hover:translate-y-1" />
+                                </button>
                             </a>
+
                         </div>
 
                     </div>
