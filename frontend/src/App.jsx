@@ -20,6 +20,8 @@ import {
 import VideoModal from './components/VideoModal';
 import Spline from '@splinetool/react-spline';
 import { useNavigate } from "react-router-dom";
+import ChatWidget from './components/ChatWidget';
+
 
 
 
@@ -115,6 +117,7 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-black text-white overflow-hidden">
+      <ChatWidget/>
       {/* Navigation */}
 
       {/* Animated Background */}

@@ -411,7 +411,7 @@ app.post("/api/login", async (req, res) => {
 app.post("/api/fields", async (req, res) => {
   console.log("REQ BODY:", req.body)
 
-  res.send("Hello from fields endpoint");
+  // res.send("Hello from fields endpoint");
   try {
 
 
