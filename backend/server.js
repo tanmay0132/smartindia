@@ -5,6 +5,8 @@ import dotenv from "dotenv"
 import bcrypt from "bcrypt"
 import nodemailer from "nodemailer"
 import twilio from "twilio"
+import { GoogleGenAI } from "@google/genai";
+
 
 dotenv.config()
 
@@ -411,7 +413,7 @@ app.post("/api/login", async (req, res) => {
 app.post("/api/fields", async (req, res) => {
   console.log("REQ BODY:", req.body)
 
-  res.send("Hello from fields endpoint");
+  // res.send("Hello from fields endpoint");
   try {
 
 
@@ -493,6 +495,28 @@ app.get("/api/fields/:userEmail", async (req, res) => {
 })
 
 
+// chat app api
+const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY });
+
+app.post("/api/chat", async (req, res) => {
+  try {
+    const { message } = req.body;
+
+    const result = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: [
+        { parts: [{ text: "You are a cat. Your name is Neko." }] }, // system
+        { parts: [{ text: message }] } // user
+      ],
+    });
+
+    res.json({ reply: result.response.text() }); // ✅ always return JSON
+  } catch (err) {
+    console.error("Chat error:", err);
+    res.status(500).json({ error: "AI response failed" }); // ✅ still return JSON
+  }
+});
+
 
 // Health check
 app.get("/api/health", (req, res) => {
@@ -512,6 +536,10 @@ process.on("SIGTERM", () => {
     process.exit(0)
   })
 })
+
+
+
+
 
 
 

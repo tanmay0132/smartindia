@@ -35,7 +35,7 @@ const Navbar = () => {
         navigate("/"); // redirect to home
     }
 
-    const menuItems = ["Home", "FieldInfo", "Weather", "About"];
+    const menuItems = ["Home", "Field-Info", "Consult-Expert", "About"];
     return (
         <>
             <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900/70 backdrop-blur-xl border-b border-gray-700/50">

@@ -11,8 +11,9 @@ import "./index.css";
 
 import About from "./components/pages/About.jsx";
 import LoginSignup from "./components/pages/LoginSignup.jsx";
-import Weather from "./components/pages/Weather.jsx";
 import FieldInfo from "./components/pages/FieldInfo.jsx";
+import ConsultExpertPage from "./components/pages/ConsultExpert.jsx";
+
 
 // Page transition wrapper
 function AnimatedRoutes() {
@@ -46,15 +47,15 @@ function AnimatedRoutes() {
           }
         />
         <Route
-          path="/weather"
+          path="/consult-expert"
           element={
             <PageWrapper>
-              <Weather />
+              <ConsultExpertPage />
             </PageWrapper>
           }
         />
         <Route
-          path="/fieldinfo"
+          path="/field-info"
           element={
             <PageWrapper>
               <FieldInfo />

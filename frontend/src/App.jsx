@@ -20,6 +20,8 @@ import {
 import VideoModal from './components/VideoModal';
 import Spline from '@splinetool/react-spline';
 import { useNavigate } from "react-router-dom";
+import ChatWidget from './components/ChatWidget';
+
 
 
 
@@ -115,6 +117,7 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-black text-white overflow-hidden">
+      <ChatWidget/>
       {/* Navigation */}
 
       {/* Animated Background */}
@@ -177,7 +180,7 @@ const HomePage = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center max-[473px]:mb-6">
             <button
-              onClick={() => navigate("/fieldinfo")}
+              onClick={() => navigate("/field-info")}
               className="group bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center gap-3 shadow-lg shadow-green-500/20 hover:shadow-green-500/40"
             >
               Try the Model
@@ -551,7 +554,7 @@ const HomePage = () => {
       <VideoModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        videoUrl="https://www.youtube.com/embed/y6GHcK8pHQo?si=9QON2cUpbEvvKSIj"
+        videoUrl=""
         type="youtube"
       />
 

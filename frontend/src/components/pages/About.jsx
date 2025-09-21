@@ -103,7 +103,7 @@ const AboutPage = () => {
                 "Leads research initiatives, building scalable APIs and managing deployment pipelines. Skilled in cross-platform mobile solutions to ensure robust, efficient systems.",
             skills: ["Django", "Python", "AI & ML", "Research", "Web Development"],
             icon: <Smartphone className="w-6 h-6" />,
-            avatar: "https://media.licdn.com/dms/image/v2/D5635AQEjDAPwP7vMCw/profile-framedphoto-shrink_800_800/B56ZjpnC_qIAAg-/0/1756265984442?e=1758542400&v=beta&t=SppRN5a_0hbZP1REuyG6ofCy12UoXw983sFRypAjrOM",
+            avatar: "https://media.licdn.com/dms/image/v2/D5635AQEjDAPwP7vMCw/profile-framedphoto-shrink_800_800/B56ZjpnC_qIAAg-/0/1756265984442?e=1759557600&v=beta&t=P4W06XEtIVLQTGcucD3HpR23KzOloSVH62HPS8vW0ek",
             linkedin: "https://www.linkedin.com/in/surya-pratap-dash-b5b496287/",
         },
     ]
@@ -167,8 +167,8 @@ const AboutPage = () => {
 
             {/* Hero Section */}
             <section
-                className="relative z-10 pt-20 pb-11 px-4 sm:px-6 lg:px-8"
-                style={{ paddingTop: "118px" }}
+                className="relative z-10 pt-28 sm:pt-32 pt-  pb-11 px-4 sm:px-6 lg:px-8"
+                
             >
                 <div className="max-w-4xl mx-auto text-center">
                     <div className="animate-fade-in">
@@ -201,16 +201,17 @@ const AboutPage = () => {
                         {/* Download Button */}
                         <div className="flex justify-center">
                             <a
-                                href=".../ZeroDegree_B124146.pdf" // Replace with your PDF path
-                                download
+                                href="/ZeroDegree_B124146.pdf" // Replace with your PDF path
+                                target="_blank"
+                                rel="noopener noreferrer"
                             >
-                                <button className="group bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center gap-3 shadow-lg shadow-green-500/20 hover:shadow-green-500/40">
-                                    Download SIH PDF
+                                <button className="group bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white font-bold py-3.5 px-8 mt-5 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center gap-3 shadow-lg shadow-green-500/20 hover:shadow-green-500/40">
+                                    View SIH PDF
                                     <Download className="w-5 h-5 transform transition-transform duration-300 ease-in-out group-hover:translate-y-1" />
                                 </button>
                             </a>
-
                         </div>
+
 
                     </div>
                 </div>
