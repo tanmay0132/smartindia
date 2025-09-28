@@ -23,12 +23,12 @@ export default function FieldInfo() {
   const [fieldName, setFieldName] = useState("")
 
   // ✅ Check localStorage for userEmail on mount
-  // useEffect(() => {
-  //   const email = localStorage.getItem("userEmail")
-  //   if (!email) {
-  //     navigate("/loginsignup") // redirect
-  //   }
-  // }, [navigate])
+  useEffect(() => {
+    const email = localStorage.getItem("userEmail")
+    if (!email) {
+      navigate("/loginsignup") // redirect
+    }
+  }, [navigate])
 
   useEffect(() => {
     const fetchFields = async () => {
