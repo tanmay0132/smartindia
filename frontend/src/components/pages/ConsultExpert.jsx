@@ -29,7 +29,7 @@ export default function ConsultExpertPage() {
             specialty: "Climate Data Analyst",
             experience: "12+ years",
             rating: 4.8,
-            avatar: "https://images.unsplash.com/photo-1594824475400-7be3e8b4ef57?w=150&h=150&fit=crop&crop=face",
+            avatar: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=150&h=150&fit=crop&crop=face",
             consultations: 1800,
             expertise: ["Weather Pattern Analysis", "Data Interpretation", "Agricultural Planning"],
             available: true
