@@ -12,44 +12,21 @@ export default function WeatherWidget() {
     const API_KEY = "3395b1ce12d64c66bc984131242210"
 
     const fetchWeather = async () => {
+        if (!city) return
         try {
             setLoading(true)
             setError(null)
-            
-            // Mock API response for demo purposes
-            // In real implementation, use your actual API endpoint
-            const mockData = {
-                location: {
-                    name: city,
-                    region: "Odisha",
-                    country: "India",
-                    localtime: new Date().toLocaleString()
-                },
-                current: {
-                    temp_c: 28,
-                    condition: {
-                        text: "Partly cloudy",
-                        icon: "https://cdn.weatherapi.com/weather/64x64/day/116.png"
-                    },
-                    humidity: 75,
-                    wind_kph: 12,
-                    feelslike_c: 32,
-                    uv: 6
-                }
-            }
-            
-            // Simulate API delay
-            setTimeout(() => {
-                setWeather(mockData)
-                setLoading(false)
-            }, 1000)
-            
-            // Uncomment below for real API call
-            /*
+            setWeather(null)
+
             const res = await fetch(
-                `/weatherapi/v1/current.json?key=${API_KEY}&q=${city}&aqi=no`
-            );
-            const data = await res.json();
+                `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}&aqi=no`
+            )
+
+            if (!res.ok) {
+                throw new Error("Failed to fetch data")
+            }
+
+            const data = await res.json()
 
             if (data.error) {
                 setError(data.error.message)
@@ -57,10 +34,12 @@ export default function WeatherWidget() {
             } else {
                 setWeather(data)
             }
-            */
+
         } catch (err) {
             console.error("Error fetching weather:", err)
             setError("Something went wrong. Please try again.")
+            setWeather(null)
+        } finally {
             setLoading(false)
         }
     }
@@ -86,30 +65,26 @@ export default function WeatherWidget() {
                 document.body.appendChild(particle)
 
                 setTimeout(() => {
-                    if (particle.parentNode) {
-                        particle.remove()
-                    }
+                    if (particle.parentNode) particle.remove()
                 }, 7000)
             }
 
             const interval = setInterval(createParticle, 300)
             return () => {
                 clearInterval(interval)
-                // Clean up particles
-                const particles = document.querySelectorAll('.weather-particle')
-                particles.forEach(particle => particle.remove())
+                document.querySelectorAll(".weather-particle").forEach(p => p.remove())
             }
         }
     }, [isModalOpen])
 
     const openModal = () => {
         setIsModalOpen(true)
-        document.body.style.overflow = 'hidden'
+        document.body.style.overflow = "hidden"
     }
 
     const closeModal = () => {
         setIsModalOpen(false)
-        document.body.style.overflow = 'unset'
+        document.body.style.overflow = "unset"
         setWeather(null)
         setError(null)
     }
@@ -117,40 +92,32 @@ export default function WeatherWidget() {
     return (
         <>
             {/* Weather Widget Button */}
-            <div className="fixed left-0 max-[600px]:top-[40%] top-[30%] transform -translate-y-1/2 z-40 ">
+            <div className="fixed left-0 max-[600px]:top-[45vh] top-[30vh] transform -translate-y-1/2 z-40 opacity-0 animate-slide-in-left">
                 <div
                     className={`relative transition-all duration-500 ease-in-out ${
-                        isHovered ? 'translate-x-0' : '-translate-x-3'
+                        isHovered ? "translate-x-0" : "-translate-x-3"
                     }`}
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                 >
-                    {/* U-shaped container */}
                     <div className="relative">
-                        {/* Main button */}
                         <button
                             onClick={openModal}
                             className="group relative bg-gradient-to-br from-blue-500 to-emerald-500 hover:from-blue-400 hover:to-emerald-400 rounded-r-2xl pl-4 pr-3 py-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-l-0"
                         >
                             <Cloud className="w-6 h-6 text-white group-hover:animate-bounce" />
-                            
-                             {/* Pulse animation */}
-        <div className="absolute inset-0 rounded-r-2xl bg-gradient-to-br from-blue-400 to-emerald-400 animate-ping opacity-20"></div>
-
-                            {/* Glow effect */}
+                            <div className="absolute inset-0 rounded-r-2xl bg-gradient-to-br from-blue-400 to-emerald-400 animate-ping opacity-20"></div>
                             <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-emerald-400 rounded-r-2xl opacity-0 group-hover:opacity-20 blur-sm transition-opacity duration-300"></div>
                         </button>
 
-                        {/* Slide-out text */}
                         <div
                             className={`absolute left-full top-1/2 transform -translate-y-1/2 ml-2 bg-gray-900/90 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-300 pointer-events-none ${
                                 isHovered
-                                    ? 'opacity-100 translate-x-0 visible'
-                                    : 'opacity-0 -translate-x-2 invisible'
+                                    ? "opacity-100 translate-x-0 visible"
+                                    : "opacity-0 -translate-x-2 invisible"
                             }`}
                         >
                             Check Weather
-                            {/* Arrow */}
                             <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent border-r-gray-900/90"></div>
                         </div>
                     </div>
@@ -160,21 +127,17 @@ export default function WeatherWidget() {
             {/* Modal */}
             {isModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 custom-scrollbar">
-                    {/* Backdrop */}
-                    <div 
+                    <div
                         className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in"
                         onClick={closeModal}
                     ></div>
 
-                    {/* Modal Content */}
                     <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-gray-900 via-green-900 to-black rounded-3xl animate-scale-in">
-                        {/* Background effects */}
                         <div className="absolute inset-0 overflow-hidden rounded-3xl">
                             <div className="absolute -top-40 -right-40 w-80 h-80 bg-green-500/10 rounded-full blur-3xl animate-pulse"></div>
                             <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
                         </div>
 
-                        {/* Close button */}
                         <button
                             onClick={closeModal}
                             className="absolute top-4 right-4 z-20 p-2 bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 hover:scale-110 group"
@@ -182,9 +145,7 @@ export default function WeatherWidget() {
                             <X className="w-5 h-5 text-white group-hover:rotate-90 transition-transform duration-300" />
                         </button>
 
-                        {/* Content */}
                         <div className="relative z-10 p-4 sm:p-6 pt-16 sm:pt-20">
-                            {/* Header */}
                             <div className="text-center mb-8 animate-fade-in">
                                 <h1 className="text-2xl sm:text-4xl font-bold mb-2 bg-gradient-to-r from-green-400 via-blue-500 to-emerald-400 bg-clip-text text-transparent animate-gradient">
                                     Weather Nexus
@@ -211,20 +172,17 @@ export default function WeatherWidget() {
                                     disabled={loading}
                                     className="group relative px-4 py-3 sm:px-6 sm:py-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl font-semibold transition-all duration-300 hover:from-green-400 hover:to-emerald-500 hover:scale-105 hover:shadow-2xl hover:shadow-green-500/25 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
                                 >
-                                    <span className="relative">
-                                        {loading ? (
-                                            <div className="flex items-center justify-center space-x-2">
-                                                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                                                <span className="hidden sm:inline">Searching...</span>
-                                            </div>
-                                        ) : (
-                                            "Search"
-                                        )}
-                                    </span>
+                                    {loading ? (
+                                        <div className="flex items-center justify-center space-x-2">
+                                            <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                                            <span className="hidden sm:inline">Searching...</span>
+                                        </div>
+                                    ) : (
+                                        "Search"
+                                    )}
                                 </button>
                             </div>
 
-                            {/* Error Message */}
                             {error && (
                                 <div className="text-red-400 bg-red-500/10 px-4 py-2 rounded-xl text-center mb-6 text-sm">
                                     {error}
@@ -234,11 +192,9 @@ export default function WeatherWidget() {
                             {/* Weather Card */}
                             {weather && (
                                 <div className="group relative animate-scale-in">
-                                    {/* Glow border */}
                                     <div className="absolute -inset-1 bg-gradient-to-r from-green-400 via-blue-500 to-emerald-400 rounded-3xl blur opacity-25 group-hover:opacity-50 transition-opacity duration-500 animate-gradient"></div>
 
                                     <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-4 sm:p-6 shadow-2xl hover:shadow-green-500/10 transition-all duration-500 hover:scale-[1.02]">
-                                        {/* Location Header */}
                                         <div className="text-center mb-6">
                                             <h2 className="text-xl sm:text-3xl font-bold mb-2 text-white">{weather.location.name}</h2>
                                             <p className="text-sm sm:text-base text-gray-300 mb-2">
@@ -250,7 +206,6 @@ export default function WeatherWidget() {
                                             </p>
                                         </div>
 
-                                        {/* Main Weather */}
                                         <div className="flex flex-col sm:flex-row justify-center items-center mb-6 space-y-4 sm:space-y-0 sm:space-x-8">
                                             <div className="relative">
                                                 <img
@@ -269,7 +224,6 @@ export default function WeatherWidget() {
                                             </div>
                                         </div>
 
-                                        {/* Details */}
                                         <div className="grid grid-cols-2 gap-3 sm:gap-4">
                                             {[
                                                 { icon: "💧", label: "Humidity", value: `${weather.current.humidity}%`, color: "from-blue-400 to-cyan-400" },

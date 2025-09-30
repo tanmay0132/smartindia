@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react"
 import { X, Video, Phone, MessageSquare, Upload, Calendar, Clock, User, Star, Award, CheckCircle } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
 export default function ConsultExpertPage() {
+    const navigate = useNavigate()
     const [selectedExpert, setSelectedExpert] = useState(null)
     const [consultationType, setConsultationType] = useState("")
     const [selectedDate, setSelectedDate] = useState("")
@@ -102,6 +104,12 @@ export default function ConsultExpertPage() {
         setConsultationType(type)
         setStep(3) // Skip date/time selection for immediate consultation
     }
+// useEffect(() => {
+//     const email = localStorage.getItem("userEmail")
+//     if (!email) {
+//       navigate("/loginsignup") // redirect
+//     }
+//   }, [navigate])
 
     useEffect(() => {
         const createParticle = () => {

@@ -14,7 +14,7 @@ export default defineConfig({
   },
   server: {
     allowedHosts: [
-      'c1220e17e2bd.ngrok-free.app',
+      'fc08200a1d19.ngrok-free.app',
     ],
     proxy: {
       "/weatherapi": {
