@@ -201,7 +201,7 @@ const AboutPage = () => {
                         {/* Download Button */}
                         <div className="flex justify-center">
                             <a
-                                href="/ZeroDegree_B124146.pdf" // Replace with your PDF path
+                                href="/PPT.pdf" // Replace with your PDF path
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
